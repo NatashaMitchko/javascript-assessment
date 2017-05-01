@@ -130,6 +130,7 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
   var userInputFromForm = document.getElementById("sum-to-n-field");
   var sumToNForm = document.getElementById("sum-to-n");
   var resultDispaly = document.getElementById("sum-to-n-result");
+
   //Prevents default form action, calculates value, inserts value into span
   function sumToN(e) {
     e.preventDefault(); 
@@ -214,6 +215,45 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
 <script>
   "use strict";
   // put your code here
+  var min = 0;
+  var max = 100;
+  var secretNumber;
+  function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  function beginGame () {
+    $('#play-guessing-game').prop('disabled',true);
+    $('#number-guessed').prop('disabled',false)
+    $('#try-this-number').prop('disabled',false);
+    $('#number-guessing-msg').text(''); //reset msg
+    $('#number-guessed').val(''); //reset form text for users who want to play again
+    secretNumber = getRandomNumber(min, max);
+    console.log("Game has started");
+  }
+
+  function playGame (e) {
+    e.preventDefault();
+    var userGuess = parseInt($('#number-guessed').val());
+    console.log("guess" + userGuess + "secret num" + secretNumber);
+
+      if (userGuess > secretNumber) {
+        $('#number-guessing-msg').text('Too high!');
+      }
+      else if (userGuess < secretNumber) {
+        $('#number-guessing-msg').text('Too low!');
+      }
+      else if (userGuess == secretNumber) {
+        $('#number-guessing-msg').text('You Win!');
+        $('#play-guessing-game').prop('disabled',false);
+        $('#try-this-number').prop('disabled',true);
+      }
+    }
+
+
+  // event listeners - start game & play game
+  $('#play-guessing-game').on('click', beginGame);
+  $('#try-this-number').on('click', playGame);
 </script>
 
 
