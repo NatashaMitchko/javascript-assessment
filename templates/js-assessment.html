@@ -180,7 +180,7 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
   // put your code here
 
   function replaceWithDog(e) {
-    console.log(e);
+    // console.log(e);
     $(this).attr('src', 'http://www.waggfoods.com/assets/wagg/img/page/home/dogs.png');
   }
   $('#kittenz-rule').on('dblclick', replaceWithDog);
@@ -253,6 +253,7 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
   // event listeners - start game & play game
   $('#play-guessing-game').on('click', beginGame);
   $('#try-this-number').on('click', playGame);
+  $('#number-guessed').on('click', function () { $('#number-guessed').val('');});
 </script>
 
 
