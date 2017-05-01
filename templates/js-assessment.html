@@ -235,7 +235,6 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
   function playGame (e) {
     e.preventDefault();
     var userGuess = parseInt($('#number-guessed').val());
-    console.log("guess" + userGuess + "secret num" + secretNumber);
 
       if (userGuess > secretNumber) {
         $('#number-guessing-msg').text('Too high!');
@@ -319,6 +318,14 @@ reverseButton.addEventListener('click', function (){ alert(reverseReverse("Porcu
     $("#t-rex-img").append(tRexPhoto);
   }
 
+  function sendRequest (e) {
+    e.preventDefault(); // stop form submission
+    var formData = $('#t-rex-target').val();
+    // post request so the target of the attack isn't shown in URL
+    $.post('/t-rex-attack.json', formData, showTRexResults);
+  }
+
+  $('#t-rex-form').on('submit', sendRequest);
   // put your code here
 
 </script>
